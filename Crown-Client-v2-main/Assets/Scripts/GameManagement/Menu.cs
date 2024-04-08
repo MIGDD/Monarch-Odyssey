@@ -17,4 +17,7 @@ public class Menu : MonoBehaviour
     public void LoadStackingGame() {
         SceneLoader.Load(SceneNames.StackingGame);
     }
+    public void LoadStudySession() {
+        SceneLoader.Load(SceneNames.StudySession);
+    }
 }

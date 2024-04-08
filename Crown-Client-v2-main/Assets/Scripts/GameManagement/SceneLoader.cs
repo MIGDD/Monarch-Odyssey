@@ -15,7 +15,8 @@ public enum SceneNames
     DefaultCapture,
     LoadingScene,
     TeamScene,
-    StackingGame
+    StackingGame,
+    StudySession
 }
 public static class SceneLoader 
 {
