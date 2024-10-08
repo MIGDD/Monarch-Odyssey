@@ -704,11 +704,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-<<<<<<< HEAD
-    m_SensorSize: {x: 0.59922177, y: 1}
-=======
     m_SensorSize: {x: 2.255121, y: 1}
->>>>>>> origin/Nick_Branch
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1848,11 +1844,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-<<<<<<< HEAD
-    m_SensorSize: {x: 0.59922177, y: 1}
-=======
     m_SensorSize: {x: 2.255121, y: 1}
->>>>>>> origin/Nick_Branch
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3966,11 +3958,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-<<<<<<< HEAD
-    m_SensorSize: {x: 0.59922177, y: 1}
-=======
     m_SensorSize: {x: 2.255121, y: 1}
->>>>>>> origin/Nick_Branch
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9413,11 +9401,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-<<<<<<< HEAD
-    m_SensorSize: {x: 0.59922177, y: 1}
-=======
     m_SensorSize: {x: 2.255121, y: 1}
->>>>>>> origin/Nick_Branch
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12361,11 +12345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-<<<<<<< HEAD
-  m_AnchoredPosition: {x: -71.975, y: -716}
-=======
   m_AnchoredPosition: {x: -60, y: -666}
->>>>>>> origin/Nick_Branch
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1593486874
