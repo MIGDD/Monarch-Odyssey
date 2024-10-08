@@ -113,6 +113,17 @@ public class GameManager : MonoBehaviour
         //SceneManager.LoadScene(_sceneName);
     }
 
+    public void LoadNewScene(string _sceneName)
+    {
+        SceneManager.LoadScene(_sceneName);
+    }
+
+    //called to send request to server to launch a minigame
+    public void LoadMiniGame(string _gametype)
+    {
+        ClientSend.AddQueueCommand(new LoadMiniGameCommand(_gametype));  
+    }
+
     //called when minigames and other scenes loaded additively
     private void DisableGameSceneElements()
     {

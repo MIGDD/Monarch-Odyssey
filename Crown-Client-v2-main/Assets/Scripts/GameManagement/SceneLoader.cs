@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,5 +30,10 @@ public static class SceneLoader
     public static int returnCurrentScene()
     {
           return SceneManager.GetActiveScene().buildIndex;
+    }
+
+    public static string returnCurrentSceneName()
+    {
+        return SceneManager.GetActiveScene().name;
     }
 }

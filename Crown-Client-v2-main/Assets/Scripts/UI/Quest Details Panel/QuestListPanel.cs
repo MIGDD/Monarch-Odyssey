@@ -12,10 +12,10 @@ public class QuestListPanel : MonoBehaviour
     public void PopulateQuestList()
     {
         List<QuestClass> _questList = GameManager.instance.player.currentQuests;
+        //create a button for each quest class and add it to the scrollview content transform
         foreach (QuestClass _quest in _questList)
         {
-            GameObject _questButton = Instantiate(questButtonPrefab);
-            _questButton.transform.SetParent(scrollRectContainer.transform);
+            GameObject _questButton = Instantiate(questButtonPrefab, scrollRectContainer.transform);
             QuestListingButton _buttonScript = _questButton.GetComponent<QuestListingButton>();
             _buttonScript.Initialize(_quest);
         }

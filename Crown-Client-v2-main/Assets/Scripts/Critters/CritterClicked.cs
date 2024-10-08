@@ -8,7 +8,10 @@ public class CritterClicked : MonoBehaviour
     {
         //if overhead map is on and player clicks on waypoint, display active quest details window
         Debug.Log(gameObject.name + " Clicked!");
-        GameManager.instance.ChangeScene("CritterEncounter");
+        //GameManager.instance.ChangeScene("CritterEncounter");
+        //GameManager.instance.LoadNewScene("CritterEncounter");
+        GameManager.instance.LoadMiniGame("CritterEncounter");
+
         //SceneLoader.Load(SceneNames.CritterEncounter);
 
     }

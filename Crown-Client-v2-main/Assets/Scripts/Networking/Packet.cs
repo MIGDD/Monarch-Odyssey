@@ -34,7 +34,9 @@ public enum ServerPackets
     teamMember,
     teamMemberAdded,
     teamMemberRemoved,
-    teamMemberInvited
+    teamMemberInvited,
+    loadMiniGame,
+    exitMiniGame
 
 
 }
@@ -61,7 +63,9 @@ public enum ClientPackets
     requestTeamDetails,
     requestTeamMembers,
     searchTeams,
-    joinLeaveTeam
+    joinLeaveTeam,
+    loadMiniGame,
+    exitMiniGame
 
 }
 

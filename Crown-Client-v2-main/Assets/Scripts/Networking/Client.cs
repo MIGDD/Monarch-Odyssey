@@ -26,6 +26,8 @@ public class Client : MonoBehaviour
     public string username;
     public string password;
 
+    public string miniGameHash;
+
     public bool isConnected = false;
     private delegate void PacketHandler(Packet _packet);
     private static Dictionary<int, PacketHandler> packetHandlers;
@@ -369,7 +371,9 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.teamCreated, ClientHandle.TeamCreated },
             {(int)ServerPackets.teamDetails, ClientHandle.TeamDetailsReceived },
             {(int)ServerPackets.teamMember, ClientHandle.TeamMemberDetailsReceived },
-            {(int)ServerPackets.teamMemberAdded, ClientHandle.TeamMemberAdded }
+            {(int)ServerPackets.teamMemberAdded, ClientHandle.TeamMemberAdded },
+            {(int)ServerPackets.loadMiniGame, ClientHandle.LoadMiniGame },
+            {(int)ServerPackets.exitMiniGame, ClientHandle.ExitMiniGame }
 
         };
         Debug.Log("Initialized Packets");

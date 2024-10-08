@@ -138,8 +138,7 @@ public class TeamsMenuUIManager : MonoBehaviour
 
         Debug.Log("CREATE TEAM BUTTON CALLED FOR " + _team.teamName);
         findTeamPanel.ToggleTeamListingPanel();
-        GameObject _teamButton = Instantiate(teamListingButtonPrefab);
-        _teamButton.transform.SetParent(teamListingScrollRectContainer.transform);
+        GameObject _teamButton = Instantiate(teamListingButtonPrefab, teamListingScrollRectContainer.transform);
         TeamListingButton _buttonScript = _teamButton.GetComponent<TeamListingButton>();
         _buttonScript.Initialize(_team);
     }

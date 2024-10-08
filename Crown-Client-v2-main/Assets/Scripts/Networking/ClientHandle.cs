@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -347,5 +348,19 @@ public class ClientHandle : MonoBehaviour
         string _teamName = _packet.ReadString();
 
         Debug.Log("TEAM MEMBER ADDED CALLED " + _teamMember + " " + _teamName);
+    }
+
+    public static void LoadMiniGame(Packet _packet)
+    {
+        string _gameType = _packet.ReadString();
+        string _miniGameHash = _packet.ReadString();
+
+        Client.instance.miniGameHash = _miniGameHash;
+        SceneLoader.Load((SceneNames)Enum.Parse(typeof(SceneNames),_gameType));
+    }
+
+    public static void ExitMiniGame(Packet _packet)
+    {
+        SceneLoader.Load(SceneNames.GameScene);
     }
 }
