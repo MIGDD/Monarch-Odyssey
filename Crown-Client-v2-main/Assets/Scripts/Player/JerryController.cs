@@ -82,14 +82,16 @@ public class JerryController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Book"))
+        if (other.gameObject.CompareTag("Book"))//Change Book to "RedBook"
         {
-            Vector3 randomSpawnPosition = new Vector3(Random.Range(-8, 9), Random.Range(0.5f, 2), Random.Range(-8, 9));
+            //Change Vector3 and Instantiate lines into a function
+            Vector3 randomSpawnPosition = new Vector3(Random.Range(-8, 9), 0.5f, Random.Range(-8, 9));
             Instantiate(bookPrefab, randomSpawnPosition, Quaternion.Euler(90, 0, 0));
 
             other.gameObject.SetActive(false);
             score = score + 1;
             SetScoreText();
+            //add colors to change score amounts
         }
     }
 }
