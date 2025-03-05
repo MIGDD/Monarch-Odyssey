@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2775,6 +2774,7 @@ MonoBehaviour:
   continueButton: {fileID: 1075129312}
   exitButton: {fileID: 1845810916}
   instructionScreen: {fileID: 165331477}
+  lifeGUI: {fileID: 86875092}
   score: {fileID: 386079116}
   win: {fileID: 959233560}
   lose: {fileID: 1144380898}
@@ -4058,6 +4058,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
