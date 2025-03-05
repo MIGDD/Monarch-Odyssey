@@ -126,7 +126,7 @@ public class FishManager : MonoBehaviour
         if (reelTimer <= 0 && currentButtons < maxButtons) {
             Instantiate(buttons[Random.Range(0, 3)]).transform.SetParent(canvas.transform, false);
             currentButtons++;
-            reelTimer = (float)Random.Range(2, 3);
+            reelTimer = (float)Random.Range(4, 5);
         } else {
             reelTimer -= Time.deltaTime;
         }
