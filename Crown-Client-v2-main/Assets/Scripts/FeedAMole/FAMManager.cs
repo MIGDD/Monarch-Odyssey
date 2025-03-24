@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FAMManager : MonoBehaviour
 {
@@ -66,6 +67,12 @@ public class FAMManager : MonoBehaviour
         //Stop the game and show the start UI
         playing = false;
         playButton.SetActive(true);
+    }
+
+    //Leave FAM using the X button
+    public void ExitFAM()
+    {
+        SceneManager.LoadScene("GameScene");
     }
     //Funtction to add score when a mole is clicked
     public void addScore(int moleIndex, int pointsToAdd)
