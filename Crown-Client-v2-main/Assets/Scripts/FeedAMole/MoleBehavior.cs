@@ -8,6 +8,7 @@ public class MoleBehavior : MonoBehaviour
 {
     [Header("FAMManager")]
     [SerializeField] private FAMManager famManager;
+    [SerializeField] private Material moleskin;
 
     //The offset of the mole sprite to hide it
     private Vector3 downPosition = new Vector3(0f, -6.0f, 0f);
@@ -105,8 +106,10 @@ public class MoleBehavior : MonoBehaviour
             switch(moleType)
             {
                 case MoleType.Standard:
-                    //Change the mole's color
+                    
                     ren.material.SetColor("_Color", Color.green);
+                    //Play defeated animation
+
                     //Add 1 point for hitting standard mole
                     famManager.addScore(moleIndex, 1);
                     //Stop the animation
@@ -117,8 +120,9 @@ public class MoleBehavior : MonoBehaviour
                     break;
 
                 case MoleType.Jester:
-                    //Change the mole's color
                     ren.material.SetColor("_Color", Color.red);
+                    //Play jester clicked animation
+
                     //Subtract score for hitting jester
                     famManager.subtractScore(moleIndex);
                     //Stop the animation
@@ -132,12 +136,14 @@ public class MoleBehavior : MonoBehaviour
                     if(lives == 2)
                     {
                         lives--;
-                        ren.material.SetColor("_Color", Color.white);
+                        ren.material = moleskin;
+                        //play hit animation
                     }
                     else
                     {
-                        //After the second hit change color to green
                         ren.material.SetColor("_Color", Color.green);
+                        //Play defeated animation
+                        
                         //Add 2 points for hitting king mole
                         famManager.addScore(moleIndex, 2);
                         //Stop the animation
@@ -177,8 +183,8 @@ public class MoleBehavior : MonoBehaviour
         {
             //Make a jester
             moleType = MoleType.Jester;
-            //Set the color to Black
-            ren.material.SetColor("_Color", Color.black);
+            ren.material.SetColor("_Color", Color.magenta);
+            //Create jester mole model
             lives = 1;
         }
         else
@@ -187,16 +193,16 @@ public class MoleBehavior : MonoBehaviour
             if(random < kingRate)
             {
                moleType = MoleType.King;
-               //Set the color to Yellow
                ren.material.SetColor("_Color", Color.yellow);
+               //Create king mole model
                lives = 2; 
             }
             else
             {
                 //Make a standard mole
                 moleType = MoleType.Standard;
-                //Set the color to White
-                ren.material.SetColor("_Color", Color.white);
+                ren.material = moleskin;
+                //Create regular mole model
                 lives = 1;
             }
         }

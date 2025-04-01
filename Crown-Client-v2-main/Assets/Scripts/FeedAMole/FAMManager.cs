@@ -74,6 +74,7 @@ public class FAMManager : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
+
     //Funtction to add score when a mole is clicked
     public void addScore(int moleIndex, int pointsToAdd)
     {
@@ -93,7 +94,7 @@ public class FAMManager : MonoBehaviour
         score -= 2;
         scoreText.text = $"{score}";
 
-        //Remove jester from acctive moles since it is a mole type
+        //Remove jester from active moles since it is a mole type
         currentMoles.Remove(moles[moleIndex]);
     }
 
