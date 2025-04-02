@@ -33,6 +33,9 @@ public class MoleBehavior : MonoBehaviour
     //Rendere object to access material of mole
     private Renderer ren, jesterren, kingren;
 
+    //Audio Manager to play SFX
+    AudioManager audioManager;
+
     //Called before start
     private void Awake()
     {
@@ -42,7 +45,8 @@ public class MoleBehavior : MonoBehaviour
         kingren = transform.GetChild(2).transform.GetChild(1).GetComponent<Renderer>();
         //Get the capsule collider
         //capsuleCollider = GetComponent<CapsuleCollider>();
-
+        //Get audioManager Object to play SFX
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     public void Activate(int level)
     {
@@ -104,7 +108,8 @@ public class MoleBehavior : MonoBehaviour
                     
                     ren.material.SetColor("_Color", Color.green);
                     //Play defeated animation
-
+                    //Play Standard Mole SFX
+                    audioManager.PlaySFX(audioManager.standardMole);
                     //Add 1 point for hitting standard mole
                     famManager.addScore(moleIndex, 1);
                     //Stop the animation
@@ -117,7 +122,8 @@ public class MoleBehavior : MonoBehaviour
                 case MoleType.Jester:
                     jesterren.material.SetColor("_Color", Color.red);
                     //Play jester clicked animation
-
+                    //Play Jester Mole SFX
+                    audioManager.PlaySFX(audioManager.jesterMole);
                     //Subtract score for hitting jester
                     famManager.subtractScore(moleIndex);
                     //Stop the animation
@@ -138,7 +144,8 @@ public class MoleBehavior : MonoBehaviour
                     {
                         kingren.material.SetColor("_Color", Color.green);
                         //Play defeated animation
-                        
+                        //Play King Mole SFX
+                        audioManager.PlaySFX(audioManager.kingMole);
                         //Add 2 points for hitting king mole
                         famManager.addScore(moleIndex, 2);
                         //Stop the animation
