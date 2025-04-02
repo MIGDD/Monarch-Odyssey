@@ -17,7 +17,6 @@ TagManager:
   - FishManager
   - Book
   - Gound
-  - Audio
   layers:
   - Default
   - TransparentFX
