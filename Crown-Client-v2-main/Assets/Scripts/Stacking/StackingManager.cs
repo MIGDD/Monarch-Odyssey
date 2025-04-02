@@ -94,7 +94,7 @@ public class StackingManager : MonoBehaviour
         if (timer >= timeUntilNextObject) {
             float randObj = Random.Range(0, 2);
 
-            randX = Random.Range(-10f, 10f); //Range Objects will fall within
+            randX = Random.Range(-8f, 8f); //Range Objects will fall within
             randObj = Random.Range(0f, 2f);
             Debug.Log(randObj);
             if (randObj <= 1 && randObj >= 0) randObj = 0;
