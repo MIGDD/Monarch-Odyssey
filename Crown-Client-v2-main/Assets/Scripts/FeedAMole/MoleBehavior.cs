@@ -34,7 +34,7 @@ public class MoleBehavior : MonoBehaviour
     private Renderer ren, jesterren, kingren;
 
     //Audio Manager to play SFX
-    AudioManager audioManager;
+    AudioManagerMole audioManager;
 
     //Called before start
     private void Awake()
@@ -46,7 +46,7 @@ public class MoleBehavior : MonoBehaviour
         //Get the capsule collider
         //capsuleCollider = GetComponent<CapsuleCollider>();
         //Get audioManager Object to play SFX
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerMole>();
     }
     public void Activate(int level)
     {

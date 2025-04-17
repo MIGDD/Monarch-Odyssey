@@ -18,6 +18,8 @@ public class FishManager : MonoBehaviour
     internal int maxButtons, currentButtons;
     internal Dictionary<int, Vector2> buttonLocations;
 
+    AudioManagerFish audioManager;
+
     enum States { 
         Inactive,
         WaitingForFish,
@@ -30,6 +32,7 @@ public class FishManager : MonoBehaviour
 
     private void Awake() {
         buttonLocations = new Dictionary<int, Vector2>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerFish>();
     }
     private void Update() {
         switch (currentState) {
@@ -56,6 +59,7 @@ public class FishManager : MonoBehaviour
         currentState = States.WaitingForFish;
         castButton.SetActive(false);
         withdrawButton.SetActive(true);
+        lineCastAudio();
     }
     /// <summary>
     /// Removes the line from the water
@@ -158,6 +162,7 @@ public class FishManager : MonoBehaviour
         fishText.color = Color.green;
         fishText.gameObject.SetActive(true);
         continueButton.SetActive(true);
+        fishCaughtAudio();
     }
     /// <summary>
     /// Checks to see if the last button has been clicked and the fish has been caught
@@ -186,5 +191,15 @@ public class FishManager : MonoBehaviour
         maxButtons = 0;
         currentButtons = 0;
         fishText.gameObject.SetActive(false);
+    }
+
+    public void lineCastAudio()
+    {
+        audioManager.PlaySFX(audioManager.lineCast);
+    }
+
+    public void fishCaughtAudio()
+    {
+        audioManager.PlaySFX(audioManager.fishCaught);
     }
 }
