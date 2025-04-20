@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class FishManager : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class FishManager : MonoBehaviour
     float fishTimer = 0;
     float reelTimer = 0;
     float textTimer = 0;
-    int fishLevel = 0;
+    public int fishLevel = 1;
+
     internal int maxButtons, currentButtons;
     internal Dictionary<int, Vector2> buttonLocations;
     
@@ -114,12 +116,13 @@ public class FishManager : MonoBehaviour
                     fishLevel = 1;
                 }
             }
+            Debug.Log("Fish level: " + fishLevel);
         }
         if (fishTimer > 0) {
             fishTimer -= Time.deltaTime;
             if (fishTimer <= 0) {
                 currentButtons = 0;
-                maxButtons = Random.Range(7, 13);
+                maxButtons = 6 * fishLevel + Random.Range(1, 3);
                 withdrawButton.SetActive(false);
                 currentState = States.FishOnHook;
             }
@@ -132,7 +135,7 @@ public class FishManager : MonoBehaviour
         if (reelTimer <= 0 && currentButtons < maxButtons) {
             Instantiate(buttons[Random.Range(0, 3)]).transform.SetParent(canvas.transform, false);
             currentButtons++;
-            reelTimer = (float)Random.Range(4, 5);
+            reelTimer = (float)Random.Range(5 - fishLevel, 6 - fishLevel);
         } else {
             reelTimer -= Time.deltaTime;
         }

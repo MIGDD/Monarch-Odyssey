@@ -19,7 +19,7 @@ public class MultiButton : FishButton
         }
     }
     void DecreaseTime() {
-        timer -= Time.deltaTime/(speedConstant*2);
+        timer -= Time.deltaTime/((speedConstant - difficulty)*2);
         timerImage.fillAmount = timer;
         if (timer <= 0) {
             unsuccessfullyClicked = true;
