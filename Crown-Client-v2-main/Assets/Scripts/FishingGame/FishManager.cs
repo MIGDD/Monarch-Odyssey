@@ -10,6 +10,7 @@ public class FishManager : MonoBehaviour
     public TextMeshProUGUI fishText;
     public GameObject[] buttons;
     public Canvas canvas;
+    public List<GameObject> Fish = new List<GameObject>(3);
 
     float fishTimer = 0;
     float reelTimer = 0;
@@ -17,6 +18,7 @@ public class FishManager : MonoBehaviour
     int fishLevel = 0;
     internal int maxButtons, currentButtons;
     internal Dictionary<int, Vector2> buttonLocations;
+    
 
     AudioManagerFish audioManager;
 
@@ -162,6 +164,8 @@ public class FishManager : MonoBehaviour
         fishText.color = Color.green;
         fishText.gameObject.SetActive(true);
         continueButton.SetActive(true);
+        DisableAllFish();
+        Fish[fishLevel-1].SetActive(true);
         fishCaughtAudio();
     }
     /// <summary>
@@ -201,5 +205,12 @@ public class FishManager : MonoBehaviour
     public void fishCaughtAudio()
     {
         audioManager.PlaySFX(audioManager.fishCaught);
+    }
+
+    //Makes sure all fish are hidden before caught fish is displayed
+    void DisableAllFish()
+    {
+        foreach(GameObject fish in Fish)
+            fish.SetActive(false);
     }
 }
