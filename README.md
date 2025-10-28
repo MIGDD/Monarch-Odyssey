@@ -1,5 +1,6 @@
 This is the branch that will be updated all of the Fall 2025 semester.
-Updates: Mini Games all function, win and lose feature.
+Updates: 
+- Mini Games all function, win and lose feature.
 - Adding more buildings.
 - Reworking UI to a universal standard utilising Jersey 10 as the font.
 
