@@ -1,5 +1,0 @@
-This Universal UI folder should contain what is needed for the creation of Monarch Odyssey's UI elements. 
-
-The assets folder contains the assets and images that are to be put into the project and used, while the mockups folder contains images of what some UIs will look like. The mockups are there to serve as guides.
-
-There may be assets or elements needed that are missing here. They might be in the Teams project, or might still need to be created. People can add to this folder whenever it is needed.
