@@ -20,8 +20,8 @@ public class QuickButton : FishButton
     /// Decreases the button size by a speed constant
     /// </summary>
     void Shrink() {
-        xScale -= Time.deltaTime/speedConstant/1.5f;
-        yScale -= Time.deltaTime/speedConstant/1.5f;
+        xScale -= Time.deltaTime/(speedConstant - difficulty)/1.5f;
+        yScale -= Time.deltaTime/(speedConstant - difficulty)/1.5f;
         transform.localScale = new Vector2(xScale, yScale);
         if (xScale <= 0) {
             fishManager.GetComponent<FishManager>().ButtonMissed();

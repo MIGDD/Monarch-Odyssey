@@ -8,7 +8,7 @@ public class StackingManager : MonoBehaviour
 {
     public GameObject[] fallingObject;
     public GameObject life1, life2, life3;
-    public GameObject menuScreen, playButton, continueButton, exitButton, instructionScreen;
+    public GameObject menuScreen, playButton, continueButton, exitButton, instructionScreen, lifeGUI;
 
     private float randX = 0;
     private float timer = 0;
@@ -53,6 +53,7 @@ public class StackingManager : MonoBehaviour
             lose.gameObject.SetActive(true);
             instructionScreen.SetActive(false);
             playButton.SetActive(false);
+            lifeGUI.SetActive(false);
             exitButton.SetActive(false);
             continueButton.SetActive(true);
             menuScreen.SetActive(true);
@@ -93,7 +94,7 @@ public class StackingManager : MonoBehaviour
         if (timer >= timeUntilNextObject) {
             float randObj = Random.Range(0, 2);
 
-            randX = Random.Range(-10f, 10f); //Range Objects will fall within
+            randX = Random.Range(-8f, 8f); //Range Objects will fall within
             randObj = Random.Range(0f, 2f);
             Debug.Log(randObj);
             if (randObj <= 1 && randObj >= 0) randObj = 0;

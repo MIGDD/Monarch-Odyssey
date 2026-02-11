@@ -8,21 +8,16 @@ public class MoleBehavior : MonoBehaviour
 {
     [Header("FAMManager")]
     [SerializeField] private FAMManager famManager;
+    [SerializeField] private Material moleskin;
 
     //The offset of the mole sprite to hide it
     private Vector3 downPosition = new Vector3(0f, -6.0f, 0f);
-    private Vector3 upPosition = Vector3.zero;
+    private Vector3 upPosition = new Vector3(0f, 0.15f, 0f);
 
     //Time for mole show/hide animation (can still be hit)
     private float ShowHideDuration = 0.5f;
     //Time mole is above surface
     private float visibleDuration = 1.0f;
-
-    //private CapsuleCollider capsuleCollider;
-    //private Vector3 capsuleOffset;
-    //private Vector3 capsuleSize;
-    //private Vector3 capsuleOffsetHidden;
-    //private Vector3 capsuleSizeHidden;
 
     //Mole Parameters
     private bool hittable = true;
@@ -32,47 +27,52 @@ public class MoleBehavior : MonoBehaviour
     private float kingRate = 0.25f;
     //How many times the mole must be clicked
     private int lives;
-    //The number of the mole on the grid 0-8
+    //The number of the mole hole on the grid 0-8
     private int moleIndex = 0;
 
     //Rendere object to access material of mole
-    private Renderer ren;
+    private Renderer ren, jesterren, kingren;
+
+    //Audio Manager to play SFX
+    AudioManagerMole audioManager;
 
     //Called before start
     private void Awake()
     {
         //Get the renderer
-        ren = GetComponent<Renderer>();
+        ren = transform.GetChild(0).GetComponent<Renderer>();
+        jesterren = transform.GetChild(1).transform.GetChild(1).GetComponent<Renderer>();
+        kingren = transform.GetChild(2).transform.GetChild(1).GetComponent<Renderer>();
         //Get the capsule collider
         //capsuleCollider = GetComponent<CapsuleCollider>();
-
+        //Get audioManager Object to play SFX
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerMole>();
     }
-    // Start is called before the first frame update
     public void Activate(int level)
     {
         //Set the game level, decide which mole to spawn next, and spawn the choosen mole
         setLevel(level);
         CreateNext();
-        StartCoroutine(ShowHide(downPosition, upPosition));
+        StartCoroutine(ShowHide(transform.GetChild((int)moleType).transform, downPosition, upPosition));
     }
 
-    private IEnumerator ShowHide(Vector3 downPos, Vector3 upPos)
+    private IEnumerator ShowHide(Transform mole, Vector3 downPos, Vector3 upPos)
     {
         //Start animation from down position
-        transform.localPosition = downPos;
+        mole.localPosition = downPos;
 
         //Show the mole
         float elapsed = 0f;
         while (elapsed < ShowHideDuration) 
         {
-        transform.localPosition = Vector3.Lerp(downPos, upPos, elapsed / ShowHideDuration);
+        mole.localPosition = Vector3.Lerp(downPos, upPos, elapsed / ShowHideDuration);
         // Update the elapsed time
         elapsed += Time.deltaTime;
         yield return null;
         }
 
         //Make sure animation is at up position
-        transform.localPosition = upPos;
+        mole.localPosition = upPos;
 
         //Wait for the visible duration to pass (while the mole is above groud)
         yield return new WaitForSeconds(visibleDuration);
@@ -81,14 +81,14 @@ public class MoleBehavior : MonoBehaviour
         elapsed = 0f;
         while (elapsed < ShowHideDuration)
         {
-        transform.localPosition = Vector3.Lerp(upPos, downPos, elapsed / ShowHideDuration);
+        mole.localPosition = Vector3.Lerp(upPos, downPos, elapsed / ShowHideDuration);
         // Update the elapsed time
         elapsed += Time.deltaTime;
         yield return null;
         }
 
         //End animation at down position
-        transform.localPosition = downPos;
+        mole.localPosition = downPos;
 
         //If it is still hittable after going down then it was missed
         if(hittable)
@@ -105,8 +105,11 @@ public class MoleBehavior : MonoBehaviour
             switch(moleType)
             {
                 case MoleType.Standard:
-                    //Change the mole's color
+                    
                     ren.material.SetColor("_Color", Color.green);
+                    //Play defeated animation
+                    //Play Standard Mole SFX
+                    audioManager.PlaySFX(audioManager.standardMole);
                     //Add 1 point for hitting standard mole
                     famManager.addScore(moleIndex, 1);
                     //Stop the animation
@@ -117,8 +120,10 @@ public class MoleBehavior : MonoBehaviour
                     break;
 
                 case MoleType.Jester:
-                    //Change the mole's color
-                    ren.material.SetColor("_Color", Color.red);
+                    jesterren.material.SetColor("_Color", Color.red);
+                    //Play jester clicked animation
+                    //Play Jester Mole SFX
+                    audioManager.PlaySFX(audioManager.jesterMole);
                     //Subtract score for hitting jester
                     famManager.subtractScore(moleIndex);
                     //Stop the animation
@@ -132,12 +137,15 @@ public class MoleBehavior : MonoBehaviour
                     if(lives == 2)
                     {
                         lives--;
-                        ren.material.SetColor("_Color", Color.white);
+                        kingren.material.SetColor("_Color", Color.yellow);
+                        //play hit animation
                     }
                     else
                     {
-                        //After the second hit change color to green
-                        ren.material.SetColor("_Color", Color.green);
+                        kingren.material.SetColor("_Color", Color.green);
+                        //Play defeated animation
+                        //Play King Mole SFX
+                        audioManager.PlaySFX(audioManager.kingMole);
                         //Add 2 points for hitting king mole
                         famManager.addScore(moleIndex, 2);
                         //Stop the animation
@@ -167,7 +175,14 @@ public class MoleBehavior : MonoBehaviour
     //Function to force hide the mole (called after the mole is tapped)
     public void Hide(){
         //Set the appropriate mole parameters to hide it
-        transform.localPosition = downPosition;
+        transform.GetChild((int)moleType).transform.localPosition = downPosition;
+    }
+
+    public void HideAll(){
+        //Hide all moles when game starts
+        transform.GetChild(0).transform.localPosition = downPosition;
+        transform.GetChild(1).transform.localPosition = downPosition;
+        transform.GetChild(2).transform.localPosition = downPosition;
     }
 
     //Function to determine which type of mole to spawn next
@@ -175,10 +190,8 @@ public class MoleBehavior : MonoBehaviour
         float random = Random.Range(0f, 1f);
         if (random < jestRate)
         {
-            //Make a jester
+            jesterren.material = moleskin;
             moleType = MoleType.Jester;
-            //Set the color to Black
-            ren.material.SetColor("_Color", Color.black);
             lives = 1;
         }
         else
@@ -187,16 +200,14 @@ public class MoleBehavior : MonoBehaviour
             if(random < kingRate)
             {
                moleType = MoleType.King;
-               //Set the color to Yellow
-               ren.material.SetColor("_Color", Color.yellow);
+               kingren.material = moleskin;
                lives = 2; 
             }
             else
             {
-                //Make a standard mole
+                //Show a standard mole
                 moleType = MoleType.Standard;
-                //Set the color to White
-                ren.material.SetColor("_Color", Color.white);
+                ren.material = moleskin;
                 lives = 1;
             }
         }
