@@ -9,13 +9,15 @@ public class FishButton : MonoBehaviour
     protected bool successfullyClicked = false;
     protected bool unsuccessfullyClicked = false;
     protected float speedConstant = 2f;
-    float destroyTimer = 1f;
+    float destroyTimer = 0.7f;
+    protected float difficulty = 0;
     int buttonNum;
     int xPosition, yPosition;
 
     private void Awake() {
         fishManager = GameObject.FindGameObjectWithTag("FishManager");
         buttonNum = fishManager.GetComponent<FishManager>().currentButtons;
+        difficulty = (fishManager.GetComponent<FishManager>().fishLevel - 1) * 0.5f;
         SetPosition();
     }
     /// <summary>

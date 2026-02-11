@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4483084, g: 0.49834055, b: 0.57559955, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1675,6 +1674,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -6144,7 +6144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeRemaining: 20
   timerIsRunning: 0
-  timeText: {fileID: 0}
+  timeText: {fileID: 612401045}
   Line1: {fileID: 740433095}
   Line2: {fileID: 677287502}
   Line3: {fileID: 1373348018}

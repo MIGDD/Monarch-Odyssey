@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FAMManager : MonoBehaviour
 {
     //List of moles
-    [SerializeField] private List<MoleBehavior> moles;
+    [SerializeField] private List<MoleBehavior> moleHoles;
 
     [Header("UI Objects")]
     [SerializeField] private GameObject playButton;
@@ -34,10 +35,10 @@ public class FAMManager : MonoBehaviour
         finalScore.SetActive(false);
         gameUI.SetActive(true);
         //Hide all the visible moles
-        for(int i=0; i< moles.Count; i++)
+        for(int i=0; i< moleHoles.Count; i++)
         {
-            moles[i].Hide();
-            moles[i].setIndex(i);
+            moleHoles[i].HideAll();
+            moleHoles[i].setIndex(i);
         }
         //Remove any old game state
         currentMoles.Clear();
@@ -59,14 +60,21 @@ public class FAMManager : MonoBehaviour
         gameUI.SetActive(false);
         finalScoreText.text = $"{score}";
         //Hide all moles
-        foreach(MoleBehavior mole in moles)
+        foreach(MoleBehavior moleHole in moleHoles)
         {
-            mole.stopGame();
+            moleHole.stopGame();
         }
         //Stop the game and show the start UI
         playing = false;
         playButton.SetActive(true);
     }
+
+    //Leave FAM using the X button
+    public void ExitFAM()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+
     //Funtction to add score when a mole is clicked
     public void addScore(int moleIndex, int pointsToAdd)
     {
@@ -75,7 +83,7 @@ public class FAMManager : MonoBehaviour
         scoreText.text = $"{score}";
 
         //Remove from active moles
-        currentMoles.Remove(moles[moleIndex]);
+        currentMoles.Remove(moleHoles[moleIndex]);
 
     }
 
@@ -86,15 +94,15 @@ public class FAMManager : MonoBehaviour
         score -= 2;
         scoreText.text = $"{score}";
 
-        //Remove jester from acctive moles since it is a mole type
-        currentMoles.Remove(moles[moleIndex]);
+        //Remove jester from active moles since it is a mole type
+        currentMoles.Remove(moleHoles[moleIndex]);
     }
 
     //Function for when a mole is missed
     public void Missed(int moleIndex, bool isMole)
     {
     
-        currentMoles.Remove(moles[moleIndex]);
+        currentMoles.Remove(moleHoles[moleIndex]);
 
     }
     //Update is called once per frame
@@ -116,27 +124,20 @@ public class FAMManager : MonoBehaviour
             int minutes = Mathf.FloorToInt(remainingTime / 60);
             int seconds = Mathf.FloorToInt(remainingTime % 60); 
             timerText.text = string.Format("{0:00}:{1:00}", minutes , seconds);
-
-            //Update time
-            // timeRemaining -= Time.deltaTime;
-            // if(timeRemaining <= 0)
-            // {
-            //     timeRemaining = 0;
-            //     GameOver();
-            // }
+            
             //  Check if we want to activate more moles
             // More moles are activated every 10 moles hit
             if(currentMoles.Count <= (score/10))
             {
                 //Choose a random mole
-                int index = Random.Range(0, moles.Count);
+                int index = Random.Range(0, moleHoles.Count);
                 //If the mole is already doing something we will try to activate it again next frame
                 //If statement checks if the selected mole is not activated
-                if(!currentMoles.Contains(moles[index]))
+                if(!currentMoles.Contains(moleHoles[index]))
                 {
                     //Activates the selected mole
-                    currentMoles.Add(moles[index]);
-                    moles[index].Activate(score/10); //score/10 is the level of the activated mole
+                    currentMoles.Add(moleHoles[index]);
+                    moleHoles[index].Activate(score/10); //score/10 is the level of the activated mole
                 }
             }
         }

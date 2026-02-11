@@ -81,7 +81,7 @@ public class CrocMovement : MonoBehaviour
 
             if (cur_timer <= 0)
             {
-                if (Cur_Waypoint < WayPoints.Length)
+                if (Cur_Waypoint < WayPoints.Length-1)
                 {
                     Cur_Waypoint++;
                 }

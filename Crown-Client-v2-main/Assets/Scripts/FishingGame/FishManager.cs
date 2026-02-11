@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class FishManager : MonoBehaviour
 {
@@ -10,13 +11,18 @@ public class FishManager : MonoBehaviour
     public TextMeshProUGUI fishText;
     public GameObject[] buttons;
     public Canvas canvas;
+    public List<GameObject> Fish = new List<GameObject>(3);
 
     float fishTimer = 0;
     float reelTimer = 0;
     float textTimer = 0;
-    int fishLevel = 0;
+    public int fishLevel = 1;
+
     internal int maxButtons, currentButtons;
     internal Dictionary<int, Vector2> buttonLocations;
+    
+
+    AudioManagerFish audioManager;
 
     enum States { 
         Inactive,
@@ -30,6 +36,7 @@ public class FishManager : MonoBehaviour
 
     private void Awake() {
         buttonLocations = new Dictionary<int, Vector2>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerFish>();
     }
     private void Update() {
         switch (currentState) {
@@ -56,6 +63,7 @@ public class FishManager : MonoBehaviour
         currentState = States.WaitingForFish;
         castButton.SetActive(false);
         withdrawButton.SetActive(true);
+        lineCastAudio();
     }
     /// <summary>
     /// Removes the line from the water
@@ -108,12 +116,13 @@ public class FishManager : MonoBehaviour
                     fishLevel = 1;
                 }
             }
+            Debug.Log("Fish level: " + fishLevel);
         }
         if (fishTimer > 0) {
             fishTimer -= Time.deltaTime;
             if (fishTimer <= 0) {
                 currentButtons = 0;
-                maxButtons = Random.Range(7, 13);
+                maxButtons = 6 * fishLevel + Random.Range(1, 3);
                 withdrawButton.SetActive(false);
                 currentState = States.FishOnHook;
             }
@@ -126,7 +135,7 @@ public class FishManager : MonoBehaviour
         if (reelTimer <= 0 && currentButtons < maxButtons) {
             Instantiate(buttons[Random.Range(0, 3)]).transform.SetParent(canvas.transform, false);
             currentButtons++;
-            reelTimer = (float)Random.Range(2, 3);
+            reelTimer = (float)Random.Range(5 - fishLevel, 6 - fishLevel);
         } else {
             reelTimer -= Time.deltaTime;
         }
@@ -158,6 +167,9 @@ public class FishManager : MonoBehaviour
         fishText.color = Color.green;
         fishText.gameObject.SetActive(true);
         continueButton.SetActive(true);
+        DisableAllFish();
+        Fish[fishLevel-1].SetActive(true);
+        fishCaughtAudio();
     }
     /// <summary>
     /// Checks to see if the last button has been clicked and the fish has been caught
@@ -186,5 +198,22 @@ public class FishManager : MonoBehaviour
         maxButtons = 0;
         currentButtons = 0;
         fishText.gameObject.SetActive(false);
+    }
+
+    public void lineCastAudio()
+    {
+        audioManager.PlaySFX(audioManager.lineCast);
+    }
+
+    public void fishCaughtAudio()
+    {
+        audioManager.PlaySFX(audioManager.fishCaught);
+    }
+
+    //Makes sure all fish are hidden before caught fish is displayed
+    void DisableAllFish()
+    {
+        foreach(GameObject fish in Fish)
+            fish.SetActive(false);
     }
 }
