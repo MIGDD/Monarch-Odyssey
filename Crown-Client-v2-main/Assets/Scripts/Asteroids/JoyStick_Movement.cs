@@ -23,7 +23,7 @@ public class JoyStick_Movement : MonoBehaviour
         //movementInput = Input.GetAxisRaw("Horizontal") * Vector3.right + Input.GetAxisRaw("Vertical") * Vector3.forward;
         movementInput.Normalize();
 
-        float y = playerRigidbody.velocity.y;
+        float y = playerRigidbody.linearVelocity.y;
 
         if (movementInput != Vector3.zero)
         {
@@ -31,19 +31,19 @@ public class JoyStick_Movement : MonoBehaviour
             {
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(movementInput), Time.deltaTime * 180);
 
-                playerRigidbody.velocity = Vector3.MoveTowards(playerRigidbody.velocity, Vector3.zero, Time.deltaTime * 30);
+                playerRigidbody.linearVelocity = Vector3.MoveTowards(playerRigidbody.linearVelocity, Vector3.zero, Time.deltaTime * 30);
             }
             else
             {
-                playerRigidbody.velocity = Vector3.MoveTowards(playerRigidbody.velocity, movementInput * 10, Time.deltaTime * 30);
+                playerRigidbody.linearVelocity = Vector3.MoveTowards(playerRigidbody.linearVelocity, movementInput * 10, Time.deltaTime * 30);
             }
         }
         else
         {
-            playerRigidbody.velocity = Vector3.MoveTowards(playerRigidbody.velocity, Vector3.zero, Time.deltaTime * 30);
+            playerRigidbody.linearVelocity = Vector3.MoveTowards(playerRigidbody.linearVelocity, Vector3.zero, Time.deltaTime * 30);
         }
-        Vector3 velocity = playerRigidbody.velocity;
+        Vector3 velocity = playerRigidbody.linearVelocity;
         velocity.y = y;
-        playerRigidbody.velocity = velocity;
+        playerRigidbody.linearVelocity = velocity;
     }
 }

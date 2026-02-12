@@ -150,7 +150,7 @@ public class Enemy_Movement : MonoBehaviour
         {
 
 
-            if (thing.tag == "Donut" && thing.GetComponent<Rigidbody>().velocity.y == 0f)
+            if (thing.tag == "Donut" && thing.GetComponent<Rigidbody>().linearVelocity.y == 0f)
             {
 
                 if (look == false) //if not looking at something, turn towards item

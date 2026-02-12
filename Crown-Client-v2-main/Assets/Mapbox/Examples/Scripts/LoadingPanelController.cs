@@ -22,7 +22,7 @@ namespace Mapbox.Examples
 		AbstractMap _map;
 		void Awake()
 		{
-			_map = FindObjectOfType<AbstractMap>();
+			_map = UnityEngine.Object.FindFirstObjectByType<AbstractMap>();
 			_map.OnInitialized += _map_OnInitialized;
 
 			_map.OnEditorPreviewEnabled += OnEditorPreviewEnabled;
