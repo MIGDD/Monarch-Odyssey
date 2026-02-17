@@ -12,6 +12,6 @@ This branch is dedicated to updating from the current unity version 2021.3.43 to
 - Minigames work 
 
 ## Known Issues
-
-
+- Lighting
+- Model Saturation
 
