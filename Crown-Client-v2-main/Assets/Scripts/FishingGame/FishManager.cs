@@ -89,9 +89,9 @@ public class FishManager : MonoBehaviour
     /// </summary>
     void FindFish() {
         if (fishTimer == 0) {
-            fishTimer = (float)Random.Range(5, 20);
+            fishTimer = (float)Random.Range(3, 12);
             //Higher chance of getting a high level fish the larger the fishTimer is
-            if (fishTimer > 15) {
+            if (fishTimer > 10) {
                 if (Random.Range(0,100) < 25) {
                     fishLevel = 3;
                 } else if (Random.Range(0,100) < 50) {
@@ -99,7 +99,7 @@ public class FishManager : MonoBehaviour
                 } else {
                     fishLevel = 1;
                 }
-            } else if (fishTimer > 10) {
+            } else if (fishTimer > 7) {
                 if (Random.Range(0,100) < 15) {
                     fishLevel = 3;
                 } else if (Random.Range(0,100) < 30) {
@@ -108,9 +108,9 @@ public class FishManager : MonoBehaviour
                     fishLevel = 1;
                 }
             } else {
-                if (Random.Range(0,100) < 5) {
+                if (Random.Range(0,100) < 4) {
                     fishLevel = 3;
-                } else if (Random.Range(0,100) < 10) {
+                } else if (Random.Range(0,100) < 8) {
                     fishLevel = 2;
                 } else {
                     fishLevel = 1;
