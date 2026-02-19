@@ -17,6 +17,8 @@ public class FishManager : MonoBehaviour
     float reelTimer = 0;
     float textTimer = 0;
     public int fishLevel = 1;
+    public int fishTotal;
+    public int score;
 
     internal int maxButtons, currentButtons;
     internal Dictionary<int, Vector2> buttonLocations;
@@ -37,6 +39,7 @@ public class FishManager : MonoBehaviour
     private void Awake() {
         buttonLocations = new Dictionary<int, Vector2>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerFish>();
+        score = 0;
     }
     private void Update() {
         switch (currentState) {
@@ -179,6 +182,22 @@ public class FishManager : MonoBehaviour
             //Debug.Log("Current: " + currentButtons + ", Max: " + maxButtons);
             currentState = States.FishCaught;
             //Debug.Log("Caught a level " + fishLevel + " fish!");
+            fishTotal += 1;
+            switch(fishLevel){
+                case 1:
+                    score += 10;
+                    break;
+                case 2:
+                    score += 20;
+                    break;
+                case 3:
+                    score += 30;
+                    break;
+                default:
+                    Debug.Log("Score not tracked");
+                    break;
+            }
+        Debug.Log($"Score {score}. Total fish {fishTotal}");
         }
     }
     /// <summary>
