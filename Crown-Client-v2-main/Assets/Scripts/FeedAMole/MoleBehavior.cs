@@ -98,6 +98,8 @@ public class MoleBehavior : MonoBehaviour
             famManager.Missed(moleIndex, moleType != MoleType.Jester);
 
         }
+        // Notify manager that we are finished
+        famManager.MoleFinished(moleIndex);
     }
 
     private void OnMouseDown(){
@@ -170,7 +172,7 @@ public class MoleBehavior : MonoBehaviour
         if(!hittable)
         {
             Hide();
-
+            famManager.MoleFinished(moleIndex);
         }
     }
 
