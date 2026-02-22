@@ -169,6 +169,7 @@ public class MoleBehavior : MonoBehaviour
         if(!hittable)
         {
             Hide();
+
         }
     }
 
