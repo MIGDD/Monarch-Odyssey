@@ -104,6 +104,7 @@ public class FAMManager : MonoBehaviour
     
         currentMoles.Remove(moleHoles[moleIndex]);
 
+
     }
     //Update is called once per frame
     void Update()

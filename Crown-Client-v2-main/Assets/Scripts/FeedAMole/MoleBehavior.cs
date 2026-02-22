@@ -96,6 +96,7 @@ public class MoleBehavior : MonoBehaviour
             hittable = false;
             //If it isn't a jester then we do nothing
             famManager.Missed(moleIndex, moleType != MoleType.Jester);
+
         }
     }
 
