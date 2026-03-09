@@ -9,7 +9,8 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(7);
     }
     public void ExitGame() {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("GameScene");
+        
     }
     public void LoadGameScene() {
         SceneLoader.Load(SceneNames.GameScene);

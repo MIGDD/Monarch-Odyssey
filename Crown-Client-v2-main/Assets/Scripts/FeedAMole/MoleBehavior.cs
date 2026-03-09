@@ -96,7 +96,10 @@ public class MoleBehavior : MonoBehaviour
             hittable = false;
             //If it isn't a jester then we do nothing
             famManager.Missed(moleIndex, moleType != MoleType.Jester);
+
         }
+        // Notify manager that we are finished
+        famManager.MoleFinished(moleIndex);
     }
 
     private void OnMouseDown(){
@@ -169,6 +172,7 @@ public class MoleBehavior : MonoBehaviour
         if(!hittable)
         {
             Hide();
+            famManager.MoleFinished(moleIndex);
         }
     }
 
