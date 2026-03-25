@@ -37,6 +37,10 @@ public class FishManager : MonoBehaviour
     States currentState = States.Inactive;
 
     private void Awake() {
+        foreach(GameObject fish in Fish)
+        {
+            fish.SetActive(false);
+        }
         buttonLocations = new Dictionary<int, Vector2>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerFish>();
         score = 0;
