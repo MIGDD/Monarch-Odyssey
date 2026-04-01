@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class PlayerMovementODU : MonoBehaviour {
+	private Animator critterAnimator;
 
 	// This is a reference to the Rigidbody component called "rb"
 	public Rigidbody rb;
@@ -10,8 +11,14 @@ public class PlayerMovementODU : MonoBehaviour {
 
 	// We marked this as "Fixed"Update because we
 	// are using it to mess with physics.
+	void Start()
+	{
+		critterAnimator = GetComponentInChildren<Animator>();
+	}
 	void FixedUpdate ()
 	{
+		critterAnimator.SetBool("isMoving", true);
+
 		// Add a forward force
 		rb.transform.Translate(0, 0, forwardForce * Time.deltaTime);
 		if(gameObject.tag == "Player")
