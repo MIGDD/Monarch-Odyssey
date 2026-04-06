@@ -87,7 +87,7 @@ public class Movement : MonoBehaviour
 
 
             }
-            if (hit.collider.tag == "Donut" && hit.collider.GetComponent<Rigidbody>().velocity.y == 0f)
+            if (hit.collider.tag == "Donut" && hit.collider.GetComponent<Rigidbody>().linearVelocity.y == 0f)
             {
                 Destroy(hit.collider.transform.gameObject);
                 launchProjectile.canfire = true;

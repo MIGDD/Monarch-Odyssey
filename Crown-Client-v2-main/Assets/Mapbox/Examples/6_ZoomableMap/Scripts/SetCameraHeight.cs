@@ -17,11 +17,11 @@ public class SetCameraHeight : MonoBehaviour
 	{
 		if (_map == null)
 		{
-			_map = FindObjectOfType<AbstractMap>();
+			_map = Object.FindFirstObjectByType<AbstractMap>();
 		}
 		if (_referenceCamera == null)
 		{
-			_referenceCamera = FindObjectOfType<Camera>();
+			_referenceCamera = Object.FindFirstObjectByType<Camera>();
 		}
 
 	}

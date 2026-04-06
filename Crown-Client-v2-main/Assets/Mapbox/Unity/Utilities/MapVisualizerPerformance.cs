@@ -22,7 +22,7 @@
 		{
 			TotalTime = 0;
 			_currentTest = 1;
-			_map = FindObjectOfType<AbstractMap>();
+			_map = UnityEngine.Object.FindFirstObjectByType<AbstractMap>();
 			_mapVisualizer = _map.MapVisualizer;
 
 			_mapVisualizer.OnMapVisualizerStateChanged += (s) =>

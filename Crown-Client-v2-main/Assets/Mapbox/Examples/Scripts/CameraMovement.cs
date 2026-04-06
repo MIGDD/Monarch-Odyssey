@@ -124,7 +124,7 @@ namespace Mapbox.Examples
 
 			if (_map == null)
 			{
-				_map = FindObjectOfType<AbstractMap>();
+				_map = UnityEngine.Object.FindFirstObjectByType<AbstractMap>();
 				if (_map == null)
 				{
 					throw new System.Exception("You must have a reference map assigned!");

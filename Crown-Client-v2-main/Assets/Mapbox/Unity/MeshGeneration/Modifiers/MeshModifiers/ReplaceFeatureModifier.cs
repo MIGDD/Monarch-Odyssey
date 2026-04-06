@@ -92,7 +92,7 @@
 				}
 				if(_abstractMap == null)
 				{
-					_abstractMap = FindObjectOfType<AbstractMap>();
+					_abstractMap = UnityEngine.Object.FindFirstObjectByType<AbstractMap>();
 				}
 				if(_abstractMap != null)
 				{

@@ -29,7 +29,7 @@
 		{
 			_camera = Camera.main;
 			_cameraStartPos = _camera.transform.position;
-			_map = FindObjectOfType<AbstractMap>();
+			_map = UnityEngine.Object.FindFirstObjectByType<AbstractMap>();
 			if(_map == null)
 			{
 				Debug.LogError("Error: No Abstract Map component found in scene.");
