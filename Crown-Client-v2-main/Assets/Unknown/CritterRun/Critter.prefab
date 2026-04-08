@@ -886,9 +886,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6106773471268755103}
   - component: {fileID: 4030188003141149462}
-  - component: {fileID: 8729031974240880064}
   - component: {fileID: 5682334764694090690}
   - component: {fileID: 6897242975463270978}
+  - component: {fileID: 5306177161079117077}
+  - component: {fileID: 2011441697202688454}
   m_Layer: 0
   m_Name: Critter
   m_TagString: Player
@@ -939,21 +940,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &8729031974240880064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5621052916192470010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27f45794b804f0f45b99cdffca92d7e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 4030188003141149462}
-  forwardForce: 4
-  sidewaysForce: 10
 --- !u!114 &5682334764694090690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,7 +947,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5621052916192470010}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbbb99f90aa67e84e8687b2af2f44455, type: 3}
   m_Name: 
@@ -997,6 +983,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8321793, y: 1.7209967, z: 1}
   m_Center: {x: -0.036261976, y: 0.31078452, z: 0}
+--- !u!114 &5306177161079117077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5621052916192470010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bff2197ff29d15dae5ebdde659b11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CritterRun
+  moveSpeed: 3
+  verticalMoveSpeed: 1.25
+  horizontalMoveSpeed: 1.25
+--- !u!114 &2011441697202688454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5621052916192470010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e42840cd7a52d97c7abc7fb2f403d3c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CritterController
+  player: {fileID: 5621052916192470010}
 --- !u!1 &5702730169330100839
 GameObject:
   m_ObjectHideFlags: 0
