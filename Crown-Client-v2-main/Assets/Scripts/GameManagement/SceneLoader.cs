@@ -17,7 +17,10 @@ public enum SceneNames
     LoadingScene,
     TeamScene,
     StackingGame,
-    StudySession
+    StudySession,
+    FeedAMoleGame,
+    DrawingGame,
+    FishingGame
 }
 public static class SceneLoader 
 {

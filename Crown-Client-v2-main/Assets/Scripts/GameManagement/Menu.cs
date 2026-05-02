@@ -21,4 +21,19 @@ public class Menu : MonoBehaviour
     public void LoadStudySession() {
         SceneLoader.Load(SceneNames.StudySession);
     }
+
+    public void LoadFeedMole()
+    {
+        SceneLoader.Load(SceneNames.FeedAMoleGame);
+    }
+
+    public void LoadDrawingGame()
+    {
+        SceneLoader.Load(SceneNames.DrawingGame);
+    }
+
+    public void LoadFishingGame()
+    {
+        SceneLoader.Load(SceneNames.FishingGame);
+    }
 }
