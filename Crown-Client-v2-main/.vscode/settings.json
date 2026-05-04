@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Crown-Client-v2-main.sln"
+    "dotnet.defaultSolution": "Crown-Client-v2-main.slnx"
 }

@@ -24,15 +24,22 @@ EditorBuildSettings:
     path: Assets/Scenes/CritterEncounter.unity
     guid: a513ce05ac9bfff42b9848a9308c4757
   - enabled: 1
-    path: Assets/Scenes/FeedAMoleGame.unity
+    path: Assets/Scenes/MiniGames/FeedAMoleGame.unity
     guid: e4079571e638b004386be3e51c1cc365
   - enabled: 1
-    path: Assets/Scenes/StackingGame.unity
+    path: Assets/Scenes/MiniGames/StackingGame.unity
     guid: 285abaa147e1c9c4c8133f2e3374245d
   - enabled: 1
-    path: Assets/Scenes/StudySession.unity
+    path: Assets/Scenes/MiniGames/StudySession.unity
     guid: f2fce336a86fb9a4d9bb788b300476ee
   - enabled: 1
+    path: Assets/Scenes/MiniGames/DrawingGame.unity
+    guid: bc7bf4594e9df401d820dba1acd9b952
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/FIshingGame.unity
+    guid: a99e326ac86ab0e4b9aab6e0552dd235
+  - enabled: 0
     path: Assets/Scenes/OldStudySession.unity
     guid: 7cb93e55befa454419e20452868c6b51
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
