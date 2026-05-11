@@ -17,8 +17,9 @@ public class StackerMovement : MonoBehaviour
 
     private void Update()
     {
-        //Changed max clamp value from 250f to 2000f to reach entire screen
-        mousePos = Mathf.Clamp(Input.mousePosition.x, 35.5f, 2000f);
+        // Clamp to actual screen width so the basket can reach the right edge
+        // on displays wider than 2000px (the previous hardcoded max).
+        mousePos = Mathf.Clamp(Input.mousePosition.x, 35.5f, Screen.width);
 
         transform.position = Camera.main.ScreenToWorldPoint(new Vector3(mousePos, 100f, 10f));
 
@@ -29,6 +30,9 @@ public class StackerMovement : MonoBehaviour
     {
         if (collision.gameObject.name == "Acorn 1(Clone)" || collision.gameObject.name == "Apple 1(Clone)")
         {
+            // Disable collider immediately so the fruit can't also enter the
+            // floor's miss-trigger before Destroy completes at end of frame.
+            collision.enabled = false;
             Destroy(collision.gameObject);
             stacked++;
         }

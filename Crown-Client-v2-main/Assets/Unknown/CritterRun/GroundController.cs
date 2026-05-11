@@ -30,6 +30,9 @@ public class GroundController : MonoBehaviour
     }
     public void DecrementGroundCount()
     {
+        // Skip respawn during scene unload — otherwise OnBecameInvisible firing
+        // on destroyed tiles spawns orphan Ground clones that survive teardown.
+        if (!gameObject.scene.isLoaded) return;
         groundCount--;
         SpawnGround();
     }

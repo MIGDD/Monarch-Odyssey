@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ObstacleProperty : MonoBehaviour
 {
-    public GameObject killer,player,plat;
+    public GameObject killer,player;
     public GameObject[] spawnObjects;
     private float nextActionTime = 0f;
-    private float platSpawn = 0f;
     private float killerTime = 0f;
     public float period = .2f;
     public float killerInterval = 5f;
-    public Vector3 obstaclePosition,platPos;
+    public Vector3 obstaclePosition;
     private float spawn;
     private int spawnNum;
     // Start is called before the first frame update
@@ -35,16 +34,9 @@ public class ObstacleProperty : MonoBehaviour
        {
             spawn = Random.Range(-2.5f,2f);
             obstaclePosition = new Vector3(spawn,0,this.transform.localPosition.z+30);
-            Instantiate(killer,obstaclePosition,Quaternion.identity); 
-            killerTime += killerInterval;   
+            Instantiate(killer,obstaclePosition,Quaternion.identity);
+            killerTime += killerInterval;
 
-       }
-      
-       if(Time.time > platSpawn){
-             platPos = new Vector3(0,0,this.transform.localPosition.z+35);
-           platSpawn += 4;
-           Instantiate(plat,platPos,Quaternion.identity);
-           
        }
     }
    void OnCollisionEnter(Collision other)
